@@ -1,3 +1,4 @@
 {
-    "BackendServer":"http://localhost:8000/api"
+    "BackendServer":"http://localhost:8000/api",
+    "MediaServer":"http://localhost:8000" 
 }

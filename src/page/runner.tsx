@@ -9,19 +9,26 @@ import config  from "../config.json"
 export const RunnerPage=()=>{
     const {courses,lessons}=useParams()
     const crudURL=config.BackendServer+`/lessons/${lessons}`
+    const crudCodeURL=config.BackendServer+`/code/${lessons}`
     const [data,setData]=useState<any>({})
+    const [code,setCode]=useState<any>({})
 
     useEffect(()=>{
-        axios.get(crudURL).then((result:any)=>{
-            setData(result.data)
-        })
-    },[])
+        if(lessons){
+            axios.get(crudURL).then((result:any)=>{
+                setData(result.data)
+            })
+            axios.get(crudCodeURL,{ withCredentials: true }).then((result:any)=>{
+                setCode(result.data)
+            })
+        }
+    },[lessons])
 
     
     return (
     <div className="flex">
         <Instruction html={data.instructions}/>
-        <Writer/>
+        <Writer code={code}/>
         <Output/>
 
     </div>)
