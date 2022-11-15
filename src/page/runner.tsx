@@ -2,7 +2,8 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Instruction } from "../component/instruction"
-import { Writer } from "./writer"
+import { Writer } from "../component/writer"
+import { Output } from "../component/console"
 import config  from "../config.json"
 
 export const RunnerPage=()=>{
@@ -20,8 +21,8 @@ export const RunnerPage=()=>{
     return (
     <div className="flex">
         <Instruction html={data.instructions}/>
-
         <Writer/>
+        <Output/>
 
     </div>)
 }
