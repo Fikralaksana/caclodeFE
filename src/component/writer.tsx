@@ -4,7 +4,7 @@ import { python } from '@codemirror/lang-python';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import  config  from "../config.json";
-export const Writer=(props:{code:any})=>{    
+export const Writer=(props:{code:any,setOutput:(data:string)=>void})=>{    
     const editor=useRef<ReactCodeMirrorRef>({})
     const [code,setCode]=useState("")
     const crudUpdateCodeURL=config.BackendServer + `/codes/${props.code.id}/`
@@ -12,7 +12,8 @@ export const Writer=(props:{code:any})=>{
     const uploadCode=()=>{
         console.log(crudUpdateCodeURL)
         axios.patch(crudUpdateCodeURL,{"code_string":code}).then((result)=>{
-            console.log(result)
+            console.log(result.data.output)
+            props.setOutput(result.data.output)
         })
     }
     useEffect(()=>{

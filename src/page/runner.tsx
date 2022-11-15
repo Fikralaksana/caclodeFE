@@ -7,11 +7,12 @@ import { Output } from "../component/console"
 import config  from "../config.json"
 
 export const RunnerPage=()=>{
-    const {courses,lessons}=useParams()
+    const {lessons}=useParams()
     const crudURL=config.BackendServer+`/lessons/${lessons}`
     const crudCodeURL=config.BackendServer+`/code/${lessons}`
     const [data,setData]=useState<any>({})
     const [code,setCode]=useState<any>({})
+    const [output,setOutput]=useState("")
 
     useEffect(()=>{
         if(lessons){
@@ -22,14 +23,15 @@ export const RunnerPage=()=>{
                 setCode(result.data)
             })
         }
-    },[lessons])
+    },[lessons,crudCodeURL,crudURL])
+
 
     
     return (
     <div className="flex">
         <Instruction html={data.instructions}/>
-        <Writer code={code}/>
-        <Output/>
+        <Writer code={code} setOutput={setOutput}/>
+        <Output output={output}/>
 
     </div>)
 }
