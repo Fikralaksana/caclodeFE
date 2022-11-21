@@ -4,7 +4,7 @@ export const Instruction=(props:{html:string})=>{
       }
     return(<>
         <div className=" w-1/3 h-screen bg-slate-700 text-left p-2" >
-            <div className="bg-white p-2"
+            <div className="bg-white p-2 break-normal overflow-auto"
             dangerouslySetInnerHTML={createMarkup()}>
 
             </div>
