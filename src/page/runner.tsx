@@ -32,7 +32,6 @@ export const RunnerPage=()=>{
 
     useEffect(()=>{
         setRerender(rerender+1)
-        console.log(output)
 
     },[output])
 
