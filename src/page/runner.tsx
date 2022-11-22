@@ -32,16 +32,16 @@ export const RunnerPage=()=>{
 
     useEffect(()=>{
         setRerender(rerender+1)
+        console.log(output)
 
     },[output])
 
-    
     return (
     <div className="flex">
         <Instruction html={data.instructions}/>
         <Writer code={code} setOutput={setOutput}/>
-        {using_console.includes(data?.course?.language)&&<Console data={output}/>}
-        {using_browser.includes(data?.course?.language)&&<Browser data={output} key={rerender}/>}
+        {data?.course?.language[0]?.type=='console'&&<Console data={output}/>}
+        {data?.course?.language[0]?.type=='browser'&&<Browser data={output} key={rerender}/>}
 
     </div>)
 }
