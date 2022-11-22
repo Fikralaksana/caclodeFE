@@ -1,5 +1,5 @@
-export const Console=(props:{output:string})=>{
-    let output=props.output.replaceAll("\r\n","<br>")
+export const Console=(props:{data:any})=>{
+    let output=props.data?.output?.replaceAll("\r\n","<br>")
     const gethtml=()=>{
         return {__html:output}
     }

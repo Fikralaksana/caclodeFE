@@ -10,10 +10,9 @@ export const Writer=(props:{code:any,setOutput:(data:string)=>void})=>{
     const crudUpdateCodeURL=config.BackendServer + `/codes/${props.code.id}/`
     const CodeURL=config.MediaServer + `${props.code.code}`
     const uploadCode=()=>{
-        console.log(crudUpdateCodeURL)
+        console.log(crudUpdateCodeURL,'updateoutput')
         axios.patch(crudUpdateCodeURL,{"code_string":code}).then((result)=>{
-            console.log(result.data.output)
-            props.setOutput(result.data.output)
+            props.setOutput(result.data)
         })
     }
     useEffect(()=>{
@@ -21,7 +20,6 @@ export const Writer=(props:{code:any,setOutput:(data:string)=>void})=>{
             console.log(CodeURL)
             axios.get(CodeURL).then((result)=>{
                 setCode(result.data)
-                console.log(result.data)
             })
         }
     },[CodeURL])
