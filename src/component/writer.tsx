@@ -10,7 +10,6 @@ export const Writer=(props:{code:any,setOutput:(data:string)=>void})=>{
     const crudUpdateCodeURL=config.BackendServer + `/codes/${props.code.id}/`
     const CodeURL=config.MediaServer + `${props.code.code}`
     const uploadCode=()=>{
-        console.log(crudUpdateCodeURL,'updateoutput')
         axios.patch(crudUpdateCodeURL,{"code_string":code}).then((result)=>{
             props.setOutput(result.data)
         })
